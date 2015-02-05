@@ -12,8 +12,8 @@
         static PeopleRepository()
         {
             Peoples = new List<Person>();
-            Peoples.Add(new Person() { FirstName = "Khoa", LastName = "Le" });
-            Peoples.Add(new Person() { FirstName = "Khoa", LastName = "Le" });
+            Peoples.Add(new Person() { ID = 1, FirstName = "Teo", LastName = "Nguyen" });
+            Peoples.Add(new Person() { ID = 2, FirstName = "Ti", LastName = "Nguyen" });
         }
 
         public IQueryable<Person> GetAll()

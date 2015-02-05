@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDataService", "WcfDataService\WcfDataService.csproj", "{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7D63A29-B229-40D4-8ADA-8A068C2C8CD6}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{8ECAE94B-7425-4601-BFF6-DE1A5AEE0DA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6A7FC8A6-4A16-4C90-BAC9-85D7A88B2E52}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Data.Services.Toolkit", "..\references\Microsoft.Data.Services.Toolkit\Microsoft.Data.Services.Toolkit.csproj", "{E38FE120-4439-4A23-B6F6-88CB0BE4E493}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Staging|Any CPU.Build.0 = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E38FE120-4439-4A23-B6F6-88CB0BE4E493} = {8ECAE94B-7425-4601-BFF6-DE1A5AEE0DA6}
+	EndGlobalSection
+EndGlobal

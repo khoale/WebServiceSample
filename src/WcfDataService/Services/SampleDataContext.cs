@@ -10,11 +10,19 @@
 
     public class SampleDataContext : ODataContext
     {
-        public IQueryable<Person> Peoples
+        public IQueryable<Person> People
         {
             get
             {
                 return this.CreateQuery<Person>();
+            }
+        }
+
+        public IQueryable<Product> Products
+        {
+            get
+            {
+                return this.CreateQuery<Product>();
             }
         }
 
@@ -23,6 +31,8 @@
             switch (fullTypeName)
             {
                 case "WcfDataService.Dtos.Person":
+                    return new PeopleRepository();
+                case "WcfDataService.Dtos.Product":
                     return new PeopleRepository();
             }
 

@@ -1,8 +1,0 @@
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\obj\Debug\WcfDataService.csprojResolveAssemblyReference.cache
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\bin\WcfDataService.dll.config
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\bin\WcfDataService.dll
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\bin\WcfDataService.pdb
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\bin\Microsoft.Data.Services.Toolkit.dll
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\obj\Debug\WcfDataService.dll
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\obj\Debug\WcfDataService.pdb
-D:\GitHub\WebServiceSample\src\WcfDataService\WcfDataService\WcfDataService\bin\System.ServiceModel.Activation.dll

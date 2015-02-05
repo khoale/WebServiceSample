@@ -13,7 +13,7 @@
         {
             // This is required
             config.SetEntitySetAccessRule("*", EntitySetRights.All);
-            config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V2;
+            config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
             config.UseVerboseErrors = true;
         }
     }

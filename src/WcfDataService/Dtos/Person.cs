@@ -2,10 +2,9 @@
 {
     using System.Data.Services.Common;
 
-    [DataServiceKey("Id")]
     public class Person
     {
-        public string Id { get; set; }
+        public int ID { get; set; }
 
         public string FirstName { get; set; }
 
