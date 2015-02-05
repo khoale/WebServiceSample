@@ -1,7 +1,5 @@
 ﻿namespace WcfDataService.Dtos
 {
-    using System.Data.Services.Common;
-
     public class Person
     {
         public int ID { get; set; }

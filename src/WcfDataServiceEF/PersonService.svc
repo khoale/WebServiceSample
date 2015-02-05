@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Service="WcfDataServiceEF.Service.PersonService" Factory="System.Data.Services.DataServiceHostFactory, Microsoft.Data.Services" %>

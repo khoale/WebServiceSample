@@ -7,20 +7,18 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{892ED6EE-C04D-44AC-B628-D5F6FEEAF43E}</ProjectGuid>
+    <ProjectGuid>{3DDFD6BF-147D-42CD-BD63-9A32D42B0761}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WcfDataService</RootNamespace>
-    <AssemblyName>WcfDataService</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>WcfDataServiceEF</RootNamespace>
+    <AssemblyName>WcfDataServiceEF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
-    <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -42,6 +40,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,16 +63,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.3\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>False</Private>
+    <Reference Include="Microsoft.OData.EntityFrameworkProvider">
+      <HintPath>..\packages\Microsoft.OData.EntityFrameworkProvider.1.0.0-beta2\lib\net40\Microsoft.OData.EntityFrameworkProvider.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.ServiceModel.Activation">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.3\lib\net40\System.Spatial.dll</HintPath>
@@ -78,38 +78,99 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
-    <Reference Include="System.Data">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
-    <Content Include="SampleService.svc" />
+    <Content Include="PersonService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dtos\Person.cs" />
-    <Compile Include="Dtos\Product.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
+    <Compile Include="Data\Address.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AddressType.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BusinessEntity.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BusinessEntityAddress.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BusinessEntityContact.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ContactType.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CountryRegion.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\EmailAddress.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Password.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Person.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PersonContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PersonContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PersonContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PersonPhone.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PhoneNumberType.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\StateProvince.cs">
+      <DependentUpon>PersonContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\PeopleRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Services\SampleDataContext.cs" />
-    <Compile Include="Services\SampleDataService.cs" />
+    <Compile Include="Service\PersonService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <EntityDeploy Include="Data\PersonContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PersonContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\PersonContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PersonContext.edmx</DependentUpon>
+      <LastGenOutput>PersonContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\PersonContext.edmx.diagram">
+      <DependentUpon>PersonContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Data\PersonContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PersonContext.edmx</DependentUpon>
+      <LastGenOutput>PersonContext.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -117,11 +178,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\references\Microsoft.Data.Services.Toolkit\Microsoft.Data.Services.Toolkit.csproj">
-      <Project>{E38FE120-4439-4A23-B6F6-88CB0BE4E493}</Project>
-      <Name>Microsoft.Data.Services.Toolkit</Name>
-    </ProjectReference>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -136,9 +195,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>16916</DevelopmentServerPort>
+          <DevelopmentServerPort>2589</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:16916/</IISUrl>
+          <IISUrl>http://localhost:2589/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
