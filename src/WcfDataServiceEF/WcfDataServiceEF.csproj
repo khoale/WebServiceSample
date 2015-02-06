@@ -119,6 +119,7 @@
     <Compile Include="Data\EmailAddress.cs">
       <DependentUpon>PersonContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Models\Address.cs" />
     <Compile Include="Data\Password.cs">
       <DependentUpon>PersonContext.tt</DependentUpon>
     </Compile>
@@ -149,8 +150,11 @@
     <Compile Include="Data\StateProvince.cs">
       <DependentUpon>PersonContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PersonContext.custom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\PersonService.cs" />
+    <Compile Include="Wrappers\GeographConvert.cs" />
+    <Compile Include="Wrappers\GeographicWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

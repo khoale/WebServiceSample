@@ -25,7 +25,6 @@ namespace WcfDataServiceEF.Data
         public string City { get; set; }
         public int StateProvinceID { get; set; }
         public string PostalCode { get; set; }
-        public System.Data.Entity.Spatial.DbGeography SpatialLocation { get; set; }
         public System.Guid rowguid { get; set; }
         public System.DateTime ModifiedDate { get; set; }
     
