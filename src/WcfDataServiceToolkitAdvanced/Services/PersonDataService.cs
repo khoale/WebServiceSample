@@ -1,14 +1,13 @@
-﻿namespace WcfDataServiceEF.Service
+﻿namespace WcfDataServiceToolkitAdvanced.Services
 {
     using System.Data.Services;
     using System.Data.Services.Common;
-    using System.Data.Services.Providers;
     using System.ServiceModel;
 
-    using AdventureWorks.Core;
+    using Microsoft.Data.Services.Toolkit;
 
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
-    public class PersonService : EntityFrameworkDataService<PersonContext>
+    public class PersonDataService : ODataService<PersonODataContext>
     {
         public static void InitializeService(DataServiceConfiguration config)
         {

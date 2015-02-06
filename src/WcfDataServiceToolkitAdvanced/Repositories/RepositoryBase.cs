@@ -1,4 +1,4 @@
-﻿namespace WcfDataService.Repositories
+﻿namespace WcfDataServiceToolkitAdvanced.Repositories
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
