@@ -1,8 +1,6 @@
 ﻿namespace WcfDataServiceToolkitAdvanced.Extensions
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.ServiceModel;
     using System.ServiceModel.Description;
 
@@ -18,10 +16,5 @@
 
             return serviceHostBase;
         }
-
-        public static bool SupportHttpsBinding(this Uri[] baseAddresses)
-        {
-            return baseAddresses.Any(x => x.Scheme.Equals("https", StringComparison.InvariantCultureIgnoreCase));
-        } 
     }
 }

@@ -2,10 +2,9 @@
 {
     using System.Linq;
 
-    using AdventureWorks.Core;
-
     using Microsoft.Data.Services.Toolkit.QueryModel;
 
+    using WcfDataServiceToolkitAdvanced.Dto;
     using WcfDataServiceToolkitAdvanced.Repositories;
 
     public class PersonODataContext : ODataContext
@@ -17,11 +16,11 @@
             this.repositoryFactory = repositoryFactory;
         }
 
-        public IQueryable<Person> People
+        public IQueryable<PersonDto> People
         {
             get
             {
-                return this.CreateQuery<Person>();
+                return this.CreateQuery<PersonDto>();
             }
         }
 

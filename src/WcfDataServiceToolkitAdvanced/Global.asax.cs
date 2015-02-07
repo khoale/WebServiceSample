@@ -25,6 +25,8 @@
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             containerBuilder.RegisterModule<ODataModule>();
+            containerBuilder.RegisterModule<MappingModule>();
+            containerBuilder.RegisterType<AsyncBooter>().As<IStartable>();
 
             containerProvider = new ContainerProvider(containerBuilder.Build());
         }

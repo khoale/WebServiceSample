@@ -4,7 +4,11 @@
 
     using AdventureWorks.Core;
 
-    public class PeopleRepository : RepositoryBase<Person, int>
+    using AutoMapper.QueryableExtensions;
+
+    using WcfDataServiceToolkitAdvanced.Dto;
+
+    public class PeopleRepository : RepositoryBase<PersonDto, int>
     {
         private readonly PersonContext personContext;
 
@@ -13,9 +17,9 @@
             this.personContext = personContext;
         }
 
-        public override IQueryable<Person> GetAll()
+        public override IQueryable<PersonDto> GetAll()
         {
-            return this.personContext.People;
+            return this.personContext.People.Project().To<PersonDto>();
         }
     }
 }

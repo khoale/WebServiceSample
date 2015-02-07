@@ -1,19 +1,18 @@
 ﻿namespace WcfDataServiceToolkitAdvanced.Bootstrapers
 {
     using System;
-    using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.ServiceModel.Activation;
     using System.Web.Routing;
-
-    using AdventureWorks.Core;
 
     using Autofac;
     using Autofac.Integration.Wcf;
 
     using Microsoft.Data.Services.Toolkit;
 
+    using WcfDataServiceToolkitAdvanced.Dto;
     using WcfDataServiceToolkitAdvanced.Repositories;
     using WcfDataServiceToolkitAdvanced.Services;
 
@@ -21,14 +20,13 @@
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<RepositoryFactory>().SingleInstance();
             builder.RegisterType<ODataServiceHostFactory>().SingleInstance();
-            builder.RegisterType<ODataStartable>().As<IStartable>();
+            builder.RegisterType<ODataStartable>().As<IAsyncStartable>();
         }
     }
 
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed. Suppression is OK here.")]
-    public class ODataStartable : IStartable
+    public class ODataStartable : AsyncStartable
     {
         private readonly IComponentContext componentContext;
 
@@ -43,7 +41,7 @@
             this.repositoryFactory = repositoryFactory;
         }
 
-        public void Start()
+        protected override void OnStart()
         {
             AutofacHostFactory.Container = this.componentContext.Resolve<ILifetimeScope>();
             this.RegisterRouteTable();
@@ -53,12 +51,14 @@
         private void RegisterRepositories()
         {
             this.repositoryFactory
-                .RegisterResource<Person>().As<PeopleRepository>();
+                .RegisterResource<PersonDto>().As<PeopleRepository>();
         }
 
         private void RegisterRouteTable()
         {
             var serviceTypes = this.GetAllServiceTypes();
+            Debug.Assert(serviceTypes.Length > 0, "serviceTypes.Length > 0");
+
             foreach (var serviceType in serviceTypes)
             {
                 var serviceName = this.GetServiceName(serviceType);
@@ -67,7 +67,7 @@
             }
         }
 
-        private IEnumerable<Type> GetAllServiceTypes()
+        private Type[] GetAllServiceTypes()
         {
             return typeof(PersonDataService).Assembly.GetTypes()
                 .Where(x => x.BaseType != null && x.BaseType.IsGenericType && x.BaseType.GetGenericTypeDefinition() == typeof(ODataService<>))

@@ -4,24 +4,32 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using Microsoft.Practices.ServiceLocation;
+    using Autofac;
 
     public class RepositoryFactory
     {
-        private readonly Dictionary<string, Type> serviceTypes;
+        private static readonly Dictionary<string, Type> serviceTypes;
 
-        public RepositoryFactory()
+        private readonly ILifetimeScope lifetimeScope;
+
+        static RepositoryFactory()
         {
-            this.serviceTypes = new Dictionary<string, Type>();
+            serviceTypes = new Dictionary<string, Type>();
+        }
+
+        public RepositoryFactory(ILifetimeScope lifetimeScope)
+        {
+            // Careful when using lifetime scope with single instance
+            this.lifetimeScope = lifetimeScope;
         }
 
         public object Create(string fullTypeName)
         {
             Type serviceType;
 
-            if (this.serviceTypes.TryGetValue(fullTypeName, out serviceType))
+            if (serviceTypes.TryGetValue(fullTypeName, out serviceType))
             {
-                return ServiceLocator.Current.GetInstance(serviceType);
+                return this.lifetimeScope.Resolve(serviceType);
             }
 
             throw new KeyNotFoundException(
@@ -30,7 +38,7 @@
 
         public RepositoryRegister<TResource> RegisterResource<TResource>() where TResource : class, new()
         {
-            return new RepositoryRegister<TResource>(this.serviceTypes);
+            return new RepositoryRegister<TResource>(serviceTypes);
         }
     }
 
