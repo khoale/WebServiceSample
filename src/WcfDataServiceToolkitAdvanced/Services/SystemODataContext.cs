@@ -5,18 +5,18 @@
     using WcfDataServiceToolkitAdvanced.Dto;
     using WcfDataServiceToolkitAdvanced.Repositories;
 
-    public class PersonODataContext : BaseODataContext
+    public class SystemODataContext : BaseODataContext
     {
-        public PersonODataContext(RepositoryFactory repositoryFactory)
+        public SystemODataContext(RepositoryFactory repositoryFactory)
             : base(repositoryFactory)
         {
         }
 
-        public IQueryable<PersonDto> People
+        public IQueryable<ExceptionDto> Exceptions
         {
             get
             {
-                return this.CreateQuery<PersonDto>();
+                return this.CreateQuery<ExceptionDto>();
             }
         }
     }
