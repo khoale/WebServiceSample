@@ -8,9 +8,9 @@
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // Use func can increase speed when create new instance by 10x
+            // Use func can increase speed when creating new instance by 10x
             builder.Register(
-                context => new PersonContext());
+                context => new PersonContext()).InstancePerLifetimeScope();
         }
     }
 }

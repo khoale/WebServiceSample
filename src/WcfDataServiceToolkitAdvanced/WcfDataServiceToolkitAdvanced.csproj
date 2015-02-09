@@ -131,6 +131,7 @@
     <Compile Include="Bootstrapers\Module\MappingModule.cs" />
     <Compile Include="Bootstrapers\Module\ODataModule.cs" />
     <Compile Include="Dto\PersonDto.cs" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
