@@ -17,8 +17,7 @@
 
         public void Start()
         {
-            var tasks = this.startables.Select(x => x.Start()).ToArray();
-            Task.WaitAll(tasks);
+            Task.WhenAll(this.startables.Select(x => x.Start()));
         }
     }
 }
