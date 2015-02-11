@@ -7,26 +7,26 @@
 
     public class RepositoryFactory
     {
-        private static readonly Dictionary<string, Type> serviceTypes;
+        private static readonly Dictionary<string, Type> ServiceTypes;
 
         private readonly ILifetimeScope lifetimeScope;
 
         static RepositoryFactory()
         {
-            serviceTypes = new Dictionary<string, Type>();
+            ServiceTypes = new Dictionary<string, Type>();
         }
 
         public RepositoryFactory(ILifetimeScope lifetimeScope)
         {
             // Careful when using lifetime scope with single instance
-            this.lifetimeScope = lifetimeScope;
+            this.lifetimeScope = lifetimeScope.BeginLifetimeScope();
         }
 
         public object Create(string fullTypeName)
         {
             Type serviceType;
 
-            if (serviceTypes.TryGetValue(fullTypeName, out serviceType))
+            if (ServiceTypes.TryGetValue(fullTypeName, out serviceType))
             {
                 return this.lifetimeScope.Resolve(serviceType);
             }
@@ -42,7 +42,7 @@
             var repositoryType = typeof(TRepository);
             var resourceType = typeof(TResource);
 
-            serviceTypes.Add(resourceType.FullName, repositoryType);
+            ServiceTypes.Add(resourceType.FullName, repositoryType);
         }
     }
 }

@@ -81,7 +81,7 @@
         {
             public static void RegisterRepositories(RepositoryFactory repositoryFactory)
             {
-                //// Register resource manualy
+                //// Register resource manually
                 // this.repositoryFactory
                 //     .RegisterResource<PersonDto, PeopleRepository>();
 
