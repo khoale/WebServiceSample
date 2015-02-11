@@ -6,11 +6,12 @@
 
     using AdventureWorks.Core.Wrappers;
 
+    // BUG EfDataProvider does not support ignore properties
     [IgnoreProperties("SpatialLocation")]
     public partial class Address
     {
         private GeographyWrapper locationWrapper;
-
+        
         public System.Data.Entity.Spatial.DbGeography SpatialLocation
         {
             get

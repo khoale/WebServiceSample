@@ -1,5 +1,6 @@
 ﻿namespace WcfDataServiceToolkitAdvanced.Dto
 {
+    // [DataServiceKey("ID")] // Default key is ID, you only need to declare when your key isn't ID
     public class PersonDto
     {
         public int ID { get; set; }
