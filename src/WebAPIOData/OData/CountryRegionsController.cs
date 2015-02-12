@@ -1,11 +1,10 @@
 ﻿namespace WebAPIOData.OData
 {
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
+    using System.Net;
+    using System.Net.Http;
     using System.Web.Http;
-    using System.Web.Http.OData;
+    using System.Web.OData;
 
     using AdventureWorks.Core;
 
@@ -13,7 +12,7 @@
 
     using WebAPIOData.Dtos;
 
-    public class CountryRegionsController : AsyncEntitySetController<CountryRegionDto, string>
+    public class CountryRegionsController : ODataController
     {
         private readonly PersonContext personContext;
 
@@ -22,18 +21,25 @@
             this.personContext = personContext;
         }
 
-        public override async Task<IEnumerable<CountryRegionDto>> Get()
+        [EnableQuery]
+        public IQueryable<CountryRegionDto> Get()
         {
-            var countryRegions = this.personContext.CountryRegions.Project().To<CountryRegionDto>();
-            var result = await this.QueryOptions.ApplyTo(countryRegions).ToListAsync();
-            return result.Cast<CountryRegionDto>();
+            return this.personContext.CountryRegions.Project().To<CountryRegionDto>();
         }
 
         [HttpGet]
         public IHttpActionResult TotalState(string countryRegionCode)
         {
-            var count = this.personContext
-                .StateProvinces.Count(x => x.CountryRegionCode == countryRegionCode);
+            var count = this.personContext.StateProvinces
+                .Count(x => x.CountryRegionCode == countryRegionCode);
+
+            return this.Ok(count);
+        }
+
+        [HttpGet]
+        public IHttpActionResult Total()
+        {
+            var count = this.personContext.StateProvinces.Count();
             return this.Ok(count);
         }
     }

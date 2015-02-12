@@ -1,10 +1,7 @@
 ﻿namespace WebAPIOData.OData
 {
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web.Http.OData;
+    using System.Web.OData;
 
     using AdventureWorks.Core;
 
@@ -12,7 +9,7 @@
 
     using WebAPIOData.Dtos;
 
-    public class PeopleController : AsyncEntitySetController<PersonDto, int>
+    public class PeopleController : ODataController
     {
         private readonly PersonContext personContext;
 
@@ -21,11 +18,10 @@
             this.personContext = personContext;
         }
 
-        public override async Task<IEnumerable<PersonDto>> Get()
+        [EnableQuery]
+        public IQueryable<PersonDto> Get()
         {
-            var people = this.personContext.People.Project().To<PersonDto>();
-            var result = await this.QueryOptions.ApplyTo(people).ToListAsync();
-            return result.Cast<PersonDto>();
+            return this.personContext.People.Project().To<PersonDto>();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using AutoMapper;
 
+    using WebAPIOData.Dtos;
     using WebAPIOData.Infrastructure.Mapping.Profiles;
 
     public class MappingAsyncInitialization : AsyncInitialization
@@ -12,6 +13,7 @@
                 configuration =>
                     {
                         configuration.AddProfile<PersonMapping>();
+                        configuration.AddProfile<CountryRegionMapping>();
                     });
         }
     }
